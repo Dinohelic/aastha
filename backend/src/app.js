@@ -14,7 +14,7 @@ const app = express();
 // ===========================
 aapp.use(cors({
     origin: [
-        "http://localhost:5500",
+        "https://aastha-4fm5.onrender.com",
         "http://127.0.0.1:5500",
         "https://adubeaastha.netlify.app/"
     ],
