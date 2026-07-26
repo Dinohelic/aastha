@@ -1,0 +1,1116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aastha Hospital & IVF Centre — Call Centre Knowledge Base</title>
+<style>
+  :root{
+    --navy:#0B3C6C;
+    --blue:#1E6FB8;
+    --blue-pale:#EAF2FB;
+    --yellow:#FFC72C;
+    --yellow-pale:#FFF6DF;
+    --ink:#1E2A35;
+    --muted:#5B6B78;
+    --line:#DCE6EE;
+    --white:#FFFFFF;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    font-family:"Segoe UI", -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
+    background:var(--white);
+    color:var(--ink);
+    line-height:1.5;
+  }
+  .app{ display:flex; min-height:100vh; }
+
+  /* ---------- SIDEBAR ---------- */
+  .sidebar{
+    width:290px;
+    flex-shrink:0;
+    background:var(--navy);
+    color:var(--white);
+    position:sticky;
+    top:0;
+    height:100vh;
+    overflow-y:auto;
+    display:flex;
+    flex-direction:column;
+    border-right:4px solid var(--yellow);
+  }
+  .brand{
+    padding:22px 20px 16px 20px;
+    border-bottom:1px solid rgba(255,255,255,0.15);
+  }
+  .brand .name{
+    font-weight:700;
+    font-size:15px;
+    letter-spacing:0.3px;
+    color:var(--white);
+  }
+  .brand .sub{
+    display:block;
+    margin-top:4px;
+    font-size:12px;
+    color:var(--yellow);
+    font-weight:600;
+  }
+  .searchwrap{
+    padding:14px 16px;
+    border-bottom:1px solid rgba(255,255,255,0.15);
+  }
+  .searchwrap input{
+    width:100%;
+    padding:9px 12px;
+    border-radius:7px;
+    border:1px solid rgba(255,255,255,0.25);
+    background:rgba(255,255,255,0.08);
+    color:var(--white);
+    font-size:13px;
+    outline:none;
+  }
+  .searchwrap input::placeholder{ color:rgba(255,255,255,0.55); }
+  .searchwrap input:focus{ border-color:var(--yellow); background:rgba(255,255,255,0.14); }
+  #searchCount{ font-size:11px; color:rgba(255,255,255,0.55); margin-top:6px; display:block; min-height:14px; }
+
+  nav.toc{ padding:8px 0 24px 0; flex:1; }
+  nav.toc a{
+    display:block;
+    padding:9px 20px;
+    font-size:13.5px;
+    color:rgba(255,255,255,0.85);
+    text-decoration:none;
+    border-left:3px solid transparent;
+    cursor:pointer;
+  }
+  nav.toc a:hover{ background:rgba(255,255,255,0.08); color:var(--white); }
+  nav.toc a.active{
+    background:rgba(255,255,255,0.12);
+    border-left:3px solid var(--yellow);
+    color:var(--yellow);
+    font-weight:600;
+  }
+  nav.toc .num{ display:inline-block; width:22px; color:rgba(255,255,255,0.45); font-variant-numeric:tabular-nums; }
+  nav.toc a.active .num{ color:var(--yellow); }
+  .toc-footer{
+    padding:14px 20px;
+    font-size:11px;
+    color:rgba(255,255,255,0.45);
+    border-top:1px solid rgba(255,255,255,0.15);
+  }
+
+  /* ---------- MAIN ---------- */
+  main{ flex:1; min-width:0; background:var(--white); }
+  .topbar{
+    position:sticky; top:0; z-index:5;
+    display:flex; justify-content:space-between; align-items:center;
+    background:var(--navy);
+    color:var(--white);
+    padding:8px 28px;
+    border-bottom:4px solid var(--yellow);
+    font-size:13px;
+    font-weight:700;
+    letter-spacing:0.3px;
+    gap:16px;
+  }
+  .topbar .right{ color:var(--yellow); }
+  .logo-badge-left{
+    background:var(--white);
+    border-radius:6px;
+    padding:5px 10px;
+    display:flex;
+    align-items:center;
+    height:40px;
+  }
+  .logo-badge-left img{ height:30px; width:auto; display:block; }
+  .logo-badge-right{
+    background:#0a0a0a;
+    border-radius:6px;
+    padding:4px 10px;
+    display:flex;
+    align-items:center;
+    height:40px;
+    border:1px solid rgba(255,199,44,0.4);
+  }
+  .logo-badge-right img{ height:32px; width:auto; display:block; }
+  .brand-logo{
+    display:block;
+    max-width:170px;
+    height:auto;
+    margin:0 auto 10px auto;
+    background:var(--white);
+    border-radius:6px;
+    padding:8px 10px;
+  }
+  .adube{
+    display:flex; align-items:center; gap:8px;
+    padding:12px 20px;
+    border-top:1px solid rgba(255,255,255,0.15);
+    font-size:10.5px;
+    color:rgba(255,255,255,0.55);
+  }
+  .adube img{ height:20px; width:auto; background:#0a0a0a; border-radius:4px; padding:2px 4px; }
+
+  .content{ padding:34px 40px 100px 40px; max-width:960px; }
+
+  .hero{
+    margin-bottom:30px;
+  }
+  .hero h1{ font-size:28px; color:var(--navy); margin:0 0 6px 0; }
+  .hero p{ color:var(--muted); margin:0; font-size:14.5px; }
+  .hero .tags{ margin-top:14px; }
+  .hero .tags span{
+    display:inline-block; background:var(--yellow-pale); color:var(--navy);
+    border:1px solid var(--yellow); padding:4px 10px; border-radius:20px;
+    font-size:12px; font-weight:600; margin:0 6px 6px 0;
+  }
+  .quickbox{
+    margin-top:20px; background:var(--blue-pale); border:1px solid var(--line);
+    border-left:5px solid var(--navy); border-radius:6px; padding:14px 18px; font-size:13.5px;
+  }
+  .quickbox b{ color:var(--navy); }
+
+  section.kb-section{
+    padding-top:36px;
+    margin-top:10px;
+    scroll-margin-top:70px;
+    border-top:1px solid var(--line);
+  }
+  section.kb-section:first-of-type{ border-top:none; }
+
+  h1.sec-title{
+    background:var(--navy);
+    color:var(--white);
+    display:inline-block;
+    padding:8px 20px;
+    border-left:6px solid var(--yellow);
+    border-radius:2px;
+    font-size:19px;
+    margin:0 0 18px 0;
+  }
+  h2.sub-title{
+    color:var(--navy);
+    font-size:16px;
+    margin:26px 0 10px 0;
+    padding-bottom:6px;
+    border-bottom:2px solid var(--yellow);
+    scroll-margin-top:70px;
+  }
+  h3.mini-title{ color:var(--blue); font-size:14.5px; margin:16px 0 6px 0; }
+
+  p.body-text{ font-size:14.5px; color:var(--ink); margin:0 0 12px 0; }
+  ul.kb-list{ margin:0 0 14px 0; padding-left:22px; }
+  ul.kb-list li{ font-size:14.5px; margin-bottom:6px; }
+
+  .card{
+    background:var(--blue-pale);
+    border-left:4px solid var(--yellow);
+    border-radius:6px;
+    padding:14px 18px;
+    margin-bottom:14px;
+  }
+  .card .label{
+    font-weight:700; color:var(--navy); font-size:13.5px; margin-bottom:6px; display:flex; align-items:center; gap:6px;
+  }
+  .card .label .ico{ font-size:14px; }
+  .card p{ font-style:italic; color:#33424E; font-size:13.8px; margin:4px 0; }
+
+  .note{
+    background:var(--yellow-pale);
+    border-left:4px solid var(--navy);
+    border-radius:6px;
+    padding:12px 18px;
+    margin:14px 0;
+    font-size:13.8px;
+    font-weight:600;
+    color:var(--navy);
+  }
+
+  table.kb-table{
+    width:100%; border-collapse:collapse; margin:10px 0 20px 0; font-size:13.3px;
+  }
+  table.kb-table th{
+    background:var(--navy); color:var(--white); text-align:left;
+    padding:9px 12px; font-weight:600;
+  }
+  table.kb-table td{
+    padding:8px 12px; border-bottom:1px solid var(--line); color:var(--ink);
+  }
+  table.kb-table tr:nth-child(even) td{ background:var(--blue-pale); }
+  .table-wrap{ overflow-x:auto; }
+
+  .grid-2{ display:grid; grid-template-columns:1fr 1fr; gap:14px; }
+  @media (max-width:760px){ .grid-2{ grid-template-columns:1fr; } }
+
+  mark{ background:var(--yellow); color:var(--navy); border-radius:2px; padding:0 2px; }
+  .hidden{ display:none !important; }
+  .no-results{ padding:40px 0; text-align:center; color:var(--muted); font-size:14px; display:none; }
+
+  .back-top{
+    position:fixed; right:26px; bottom:26px;
+    background:var(--navy); color:var(--white);
+    border:2px solid var(--yellow); border-radius:50%;
+    width:44px; height:44px; display:flex; align-items:center; justify-content:center;
+    cursor:pointer; text-decoration:none; font-size:18px; box-shadow:0 4px 10px rgba(0,0,0,0.2);
+    opacity:0; pointer-events:none; transition:opacity .2s;
+  }
+  .back-top.show{ opacity:1; pointer-events:auto; }
+
+  @media (max-width:900px){
+    .sidebar{ width:230px; }
+    .content{ padding:24px 20px 90px 20px; }
+  }
+  .logout-btn{
+    background:#FFC72C;
+    color:#0B3C6C;
+    border:none;
+    padding:8px 16px;
+    border-radius:6px;
+    cursor:pointer;
+    font-weight:600;
+    transition:0.3s;
+}
+
+.logout-btn:hover{
+    background:#ffb300;
+}
+</style>
+</head>
+
+<body>
+<div class="app">
+
+  <!-- ============ SIDEBAR ============ -->
+  <aside class="sidebar">
+    <div class="brand">
+      <img class="brand-logo" src="assets/aastha-hospital-logo.png" alt="Aastha Hospital logo">
+      <span class="sub" style="display:block;text-align:center;">Call Centre Knowledge Base</span>
+    </div>
+    <div class="searchwrap">
+      <input type="text" id="search" placeholder="Search topics, doctors, scripts...">
+      <span id="searchCount"></span>
+    </div>
+    <nav class="toc" id="toc">
+      <a data-target="overview"><span class="num">•</span>Overview</a>
+      <a data-target="s1"><span class="num">01</span>Call Scripts</a>
+      <a data-target="s2"><span class="num">02</span>Dr Availability Calls</a>
+      <a data-target="s3"><span class="num">03</span>Appointment Call Handling</a>
+      <a data-target="s4"><span class="num">04</span>Diagnostic Interaction SOP</a>
+      <a data-target="s5"><span class="num">05</span>Surgery Price Enquiry SOP</a>
+      <a data-target="s6"><span class="num">06</span>KPIs &amp; Standards</a>
+      <a data-target="s7"><span class="num">07</span>Service Availability</a>
+      <a data-target="s8"><span class="num">08</span>Facility &amp; Service Queries</a>
+      <a data-target="s9"><span class="num">09</span>Panel &amp; Insurance</a>
+      <a data-target="s10"><span class="num">10</span>Emergency Protocol</a>
+      <a data-target="s11"><span class="num">11</span>Difficult Calls</a>
+      <a data-target="s12"><span class="num">12</span>Complaint Handling</a>
+      <a data-target="s13"><span class="num">13</span>Outbound Calls</a>
+      <a data-target="s14"><span class="num">14</span>Disposition Codes</a>
+      <a data-target="s15"><span class="num">15</span>Escalation Matrix</a>
+      <a data-target="s16"><span class="num">16</span>Dos &amp; Don'ts</a>
+      <a data-target="s17"><span class="num">17</span>Quick Reference</a>
+      <a data-target="s18"><span class="num">18</span>Final Notes</a>
+    </nav>
+    <div class="adube"><img src="assets/adube.jpeg" alt="adube logo"></div>
+    <div class="toc-footer">Confidential — internal call centre use only</div>
+  </aside>
+
+  <!-- ============ MAIN ============ -->
+  <main>
+    <div class="topbar">
+
+    <div class="logo-badge-left">
+        <img src="assets/aastha-hospital-logo.png" alt="Aastha Hospital logo">
+    </div>
+
+    <div class="right">
+        Call Centre Knowledge Base
+    </div>
+
+    <div style="display:flex;align-items:center;gap:15px;">
+
+        <span id="userName" style="
+            color:white;
+            font-size:14px;
+            font-weight:600;
+        "></span>
+
+        <button id="logoutBtn" class="logout-btn">
+            Logout
+        </button>
+
+        <div class="logo-badge-right">
+            <img src="assets/adube.jpeg" alt="Adube logo">
+        </div>
+
+    </div>
+
+</div>
+
+    <div class="content" id="content">
+
+      <div class="hero" id="overview">
+        <h1>Call Centre Team — Complete Knowledge Base</h1>
+        <p>Inbound &amp; outbound call reference for Aastha Hospital &amp; IVF Centre. Use the search box or the menu on the left to jump straight to any topic.</p>
+        <div class="tags">
+          <span>Appointment Booking</span><span>Query Handling</span><span>Emergency Protocol</span>
+          <span>Complaints</span><span>Escalation</span><span>Panels &amp; Insurance</span>
+        </div>
+        <div class="quickbox">
+          <b>Main Helpline:</b> +91-9250913363 &nbsp;|&nbsp;
+          <b>WhatsApp:</b> 7303280777 (patient sends "Hi") &nbsp;|&nbsp;
+          <b>Address:</b> L-2/50, Opp. Kangra Niketan, New Mahavir Nagar, Tilak Nagar, New Delhi – 110018
+        </div>
+      </div>
+
+      <!-- ================= SECTION 1 ================= -->
+      <section class="kb-section" id="s1">
+        <h1 class="sec-title">1. Standard Call Scripts</h1>
+        <p class="body-text">Use these exact scripts for every call — opening, detail collection, hold/unhold and closing. Consistency here is what makes the hospital sound professional and dependable on every single call.</p>
+
+        <h2 class="sub-title">Call Opening</h2>
+        <div class="card"><div class="label"><span class="ico">🎧</span>OPENING</div>
+          <p>"Welcome to Aastha Hospital and IVF Centre for Mahavir Nagar. How can I help you today?"</p>
+        </div>
+
+        <h2 class="sub-title">Asking for the Details</h2>
+        <div class="card"><div class="label"><span class="ico">🎧</span>COLLECT NAME &amp; NUMBER</div>
+          <p>"May I know your name and mobile number?"</p>
+        </div>
+
+        <h2 class="sub-title">After Getting the Details</h2>
+        <div class="card"><div class="label"><span class="ico">🎧</span>CONFIRMATION</div>
+          <p>"Thank you for the confirmation. I am checking information as requested by you."</p>
+        </div>
+
+        <h2 class="sub-title">Hold Script</h2>
+        <div class="card"><div class="label"><span class="ico">🎧</span>PLACING THE CALL ON HOLD</div>
+          <p>"For this information, may I please place your call on hold for 30 seconds?"</p>
+        </div>
+
+        <h2 class="sub-title">Unhold Script</h2>
+        <div class="card"><div class="label"><span class="ico">🎧</span>RETURNING TO THE CALL</div>
+          <p>"Thank you for being on hold."</p>
+        </div>
+
+        <h2 class="sub-title">Call Closing</h2>
+        <div class="card"><div class="label"><span class="ico">🎧</span>CLOSING</div>
+          <p>"Is there anything else I can help you with?"</p>
+          <p>"Thank you for calling Aastha Hospital and IVF Centre. Have a nice day."</p>
+        </div>
+      </section>
+
+      <!-- ================= SECTION 2 (NEW) ================= -->
+      <section class="kb-section" id="s2">
+        <h1 class="sec-title">2. How to Handle Dr Availability-Related Calls?</h1>
+        <p class="body-text">If a customer calls and says he is looking for treatment of a certain illness / disease, follow this probing sequence, in order. Steps marked "Mandatory: Yes" cannot be skipped.</p>
+
+        <h2 class="sub-title">Probing Steps</h2>
+        <div class="table-wrap"><table class="kb-table">
+          <tr><th>Probing Step</th><th>Mandatory</th></tr>
+          <tr><td>May I know the medical reason?</td><td>Yes</td></tr>
+          <tr><td>Need to check the doctor list and roster.</td><td>Yes</td></tr>
+          <tr><td>As per the available doctor for the day and department, need to inform the customer; if the doctor is not available for the day, then need to book the appointment (for the next available slot).</td><td>Yes</td></tr>
+          <tr><td>If the customer is struggling to get the benefit / treatment, then Emergency has to be pitched.</td><td>Yes</td></tr>
+          <tr><td>If the customer agrees, then we have to book the appointment.</td><td>Yes</td></tr>
+          <tr><td>After successful appointment booking, the agent has to inform the customer that a team member will call for the appointment follow-up.</td><td>Yes</td></tr>
+          <tr><td>Agent has to ask if the customer needs vehicle help, like an ambulance, for the visit.</td><td>Not mandatory, but advised</td></tr>
+          <tr><td>In case the customer says he will call back for the same, the agent has to ensure that he will call the customer back within the next 4 hours (night hours excluded).</td><td>Yes</td></tr>
+        </table></div>
+      </section>
+
+      <!-- ================= SECTION 3 ================= -->
+      <section class="kb-section" id="s3">
+        <h1 class="sec-title">3. How to Handle Appointment-Related Calls?</h1>
+        <p class="body-text">Follow this probing sequence on every appointment call, in order. Steps marked "Mandatory: Yes" cannot be skipped.</p>
+
+        <h2 class="sub-title">Probing Steps</h2>
+        <div class="table-wrap"><table class="kb-table">
+          <tr><th>Probing Step</th><th>Mandatory</th></tr>
+          <tr><td>May I know the medical reason?</td><td>Yes</td></tr>
+          <tr><td>May I know the doctor's name?</td><td>Yes</td></tr>
+          <tr><td>If the customer is not aware of the doctor's name, the HRE must ensure the top available doctor is pitched on the call.</td><td>Yes</td></tr>
+          <tr><td>Confirm date and time with the customer / caller. If the customer needs priority, the customer can walk in — this information must be shared with the hospital team.</td><td>Yes</td></tr>
+          <tr><td>After completion of the call, the agent has to send the appointment number.</td><td>Yes</td></tr>
+          <tr><td>After successful appointment booking, the agent has to inform the customer that a team member will call for the appointment follow-up.</td><td>Yes</td></tr>
+          <tr><td>Agent has to ask if the customer needs vehicle help, like an ambulance, for the visit.</td><td>Not mandatory, but advised</td></tr>
+        </table></div>
+      </section>
+
+      <!-- ================= SECTION 4 (NEW) ================= -->
+      <section class="kb-section" id="s4">
+        <h1 class="sec-title">4. Diagnostic-Related Interaction Handling SOP</h1>
+        <p class="body-text">If a customer calls and says he is looking for the treatment of a certain illness / disease, follow this probing sequence, in order. Steps marked "Mandatory: Yes" cannot be skipped.</p>
+
+        <h2 class="sub-title">Probing Steps</h2>
+        <div class="table-wrap"><table class="kb-table">
+          <tr><th>Probing Step</th><th>Mandatory</th></tr>
+          <tr><td>May I know the name?</td><td>Yes</td></tr>
+          <tr><td>May I know the phone number?</td><td>Yes</td></tr>
+          <tr><td>May I know which tests our doctor has written?</td><td>Yes</td></tr>
+          <tr><td>Does the customer have the written prescription?</td><td>Yes</td></tr>
+          <tr><td>Need to take the prescription on WhatsApp, with a call-back promise.</td><td>Yes</td></tr>
+          <tr><td>As per the diagnostic protocol and pre-requisite, need to inform the user.</td><td>Yes</td></tr>
+          <tr><td>Need to book the diagnostic.</td><td>Yes</td></tr>
+          <tr><td>After booking and informing about the charges, need to send the WhatsApp message.</td><td>Yes</td></tr>
+          <tr><td>Need to inform the customer that we will call before the test.</td><td>Yes</td></tr>
+        </table></div>
+
+        <div class="note">Note: If the hospital is providing home collection for the required diagnostic, then need to pitch for the home collection and inform the home visit charges.</div>
+      </section>
+
+      <!-- ================= SECTION 5 (NEW) ================= -->
+      <section class="kb-section" id="s5">
+        <h1 class="sec-title">5. Customer Wants to Know the Surgery Price</h1>
+        <p class="body-text">If a customer calls and says he is looking for surgery and names that particular surgery, follow this probing sequence, in order. Steps marked "Mandatory: Yes" cannot be skipped.</p>
+
+        <h2 class="sub-title">Probing Steps</h2>
+        <div class="table-wrap"><table class="kb-table">
+          <tr><th>Probing Step</th><th>Mandatory</th></tr>
+          <tr><td>May I know the name?</td><td>Yes</td></tr>
+          <tr><td>May I know the phone number?</td><td>Yes</td></tr>
+          <tr><td>May I know which tests our doctor has written?</td><td>Yes</td></tr>
+          <tr><td>May I know whether our doctor has written the surgery, or whether some other doctor has written the same?</td><td>Yes</td></tr>
+          <tr><td>If it is our doctor, then need to inform the user to please visit our billing team — they will confirm the same.</td><td>Yes</td></tr>
+          <tr><td>If another doctor has written the prescription, then need to ask for the prescription and convince the user to come to our OPD; an OPD appointment with the relevant doctor needs to be booked.</td><td>Yes</td></tr>
+          <tr><td>Doctor branding needs to be done on the call, and qualification needs to be mentioned on the call.</td><td>Yes</td></tr>
+          <tr><td>After booking and informing about the charges, need to send the WhatsApp message.</td><td>Yes</td></tr>
+          <tr><td>Need to inform the customer that we will call before the test.</td><td>Yes</td></tr>
+        </table></div>
+      </section>
+
+      <!-- ================= SECTION 6 ================= -->
+      <section class="kb-section" id="s6">
+        <h1 class="sec-title">6. Call Standards &amp; Performance KPIs</h1>
+        <div class="table-wrap"><table class="kb-table">
+          <tr><th>Standard</th><th>Target</th></tr>
+          <tr><td>First Ring Answer</td><td>Answer within 3 rings (within 15 seconds)</td></tr>
+          <tr><td>Abandoned Call Rate</td><td>Less than 5% of total calls</td></tr>
+          <tr><td>Avg. Handling Time — Appointment booking</td><td>2 to 4 minutes</td></tr>
+          <tr><td>Avg. Handling Time — Information query</td><td>1 to 2 minutes</td></tr>
+          <tr><td>Appointment Confirmation Accuracy</td><td>100% — read back all details before ending call</td></tr>
+          <tr><td>Escalation Response Time</td><td>Escalate complaints and emergencies within 60 seconds</td></tr>
+          <tr><td>After-Call Work</td><td>Log call in CRM within 5 minutes of call end</td></tr>
+          <tr><td>Daily Appointment Bookings</td><td>As set by management per week</td></tr>
+          <tr><td>Callback Completion</td><td>All missed call callbacks within 30 minutes during operating hours</td></tr>
+        </table></div>
+      </section>
+
+      <!-- ================= SECTION 4 ================= -->
+      <section class="kb-section" id="s7">
+        <h1 class="sec-title">7. Service Availability</h1>
+
+        <h2 class="sub-title">Information to Collect — Every Appointment</h2>
+        <div class="table-wrap"><table class="kb-table">
+          <tr><th>Field</th><th>How to Ask</th><th>Why</th></tr>
+          <tr><td>Patient Name</td><td>"May I have the patient's full name, please?"</td><td>Personalisation; CRM record</td></tr>
+          <tr><td>Age &amp; Gender</td><td>"And the patient's age?"</td><td>Department routing; clinical context</td></tr>
+          <tr><td>Chief Complaint</td><td>"What is the main reason for the visit?"</td><td>Correct department and doctor selection</td></tr>
+          <tr><td>Preferred Doctor</td><td>"Do you have a preferred doctor in mind?"</td><td>Direct booking or guidance</td></tr>
+          <tr><td>Preferred Day</td><td>"Which day is convenient for you?"</td><td>Slot selection</td></tr>
+          <tr><td>Preferred Time</td><td>"Morning or evening — preference?"</td><td>Slot matching</td></tr>
+          <tr><td>Contact Number</td><td>"May I have a contact number for the reminder?"</td><td>Confirmation and reminder call</td></tr>
+        </table></div>
+
+        <h2 class="sub-title">Doctor Availability — Quick Booking Reference</h2>
+        <div class="table-wrap"><table class="kb-table">
+          <tr><th>Department</th><th>Doctor</th><th>Available Slots</th></tr>
+          <tr><td>Gynaecology / OBS</td><td>Dr. Geeta Jain</td><td>Mon–Sat: 6 PM–8 PM | Sun: 12–1 PM (appt only)</td></tr>
+          <tr><td>Gynaecology / OBS</td><td>Dr. Aastha Bajaj</td><td>Mon–Sat: 10 AM–3 PM | Sun: 11 AM–12 PM (appt only)</td></tr>
+          <tr><td>Paediatrics</td><td>Dr. Sanjay K. Jain</td><td>Mon/Wed/Thu/Fri/Sat: 12–1 PM &amp; 7–8:30 PM | Sun: 12–1 PM</td></tr>
+          <tr><td>Paediatrics</td><td>Dr. Aditi Sachdeva</td><td>Mon–Sat: 9:30 AM–5:30 PM (walk-in / appt)</td></tr>
+          <tr><td>Paediatrics</td><td>Dr. Garima Gautam</td><td>Mon–Sat: 6 PM–8 PM</td></tr>
+          <tr><td>Paediatrics</td><td>Dr. Ravinder Yadav</td><td>Sunday &amp; Holidays: 10 AM–2 PM</td></tr>
+          <tr><td>Internal Medicine</td><td>Dr. Prateek</td><td>Mon–Sat: 11 AM–1 PM &amp; 6–8 PM | Sun: 10 AM–12 PM</td></tr>
+          <tr><td>Dermatology</td><td>Dr. Gurminder Singh Arora</td><td>Mon–Sat: 10 AM–2 PM</td></tr>
+          <tr><td>Orthopaedics</td><td>Dr. Deepak Kumar</td><td>Mon / Wed / Fri: 12 PM–3 PM</td></tr>
+          <tr><td>Orthopaedics</td><td>Dr. Himanshu Popli</td><td>Tue / Thu / Sat: 6 PM–8 PM</td></tr>
+          <tr><td>Gen. &amp; Lap. Surgery</td><td>Dr. Shailendra Kumar Jain</td><td>Tue/Thu/Sat: 11 AM–12 PM (appt only)</td></tr>
+          <tr><td>Gen. &amp; Lap. Surgery</td><td>Dr. Anshul Bansal</td><td>Mon/Wed/Fri: 12 PM–2 PM | Sun: 10–11 AM (appt)</td></tr>
+          <tr><td>Medical Oncology</td><td>Dr. Ranjan</td><td>By appointment — check with scheduling team</td></tr>
+          <tr><td>Surgical Oncology</td><td>Dr. Sudip Raina</td><td>2nd &amp; 4th Sunday: 10 AM–12 PM</td></tr>
+          <tr><td>Psychiatry</td><td>Dr. Chaitanya Sheoran</td><td>Tue–Sat: 1 PM–3 PM</td></tr>
+          <tr><td>Clinical Psychology</td><td>Ms. Gavneet Kaur Pruthi</td><td>Tue–Sat: 1 PM–4 PM</td></tr>
+          <tr><td>Dental</td><td>Dr. Mayank Lau</td><td>Mon–Sat: 10 AM–2 PM</td></tr>
+          <tr><td>Ultrasound / Radiology</td><td>—</td><td>Mon–Sat: 8–9 AM &amp; 6:30–7:30 PM</td></tr>
+        </table></div>
+
+        <h2 class="sub-title">Appointment Booking Script — Full Flow</h2>
+        <div class="card"><div class="label"><span class="ico">🎧</span>STEP 1 — Identify Need</div>
+          <p>"I would be happy to book an appointment for you. Could you tell me which department or doctor you need — and briefly, what is the reason for the visit?"</p></div>
+        <div class="card"><div class="label"><span class="ico">🎧</span>STEP 2 — Suggest Doctor &amp; Timing</div>
+          <p>"For [presenting complaint], I would recommend [Doctor Name] from our [Department] team. [Doctor] is available on [Days] from [Timing]. Does that work for you?"</p></div>
+        <div class="card"><div class="label"><span class="ico">🎧</span>STEP 3 — Collect Details</div>
+          <p>"Perfect. May I have the patient's full name? [Name noted] And a contact number for the confirmation reminder? [Number noted]"</p></div>
+        <div class="card"><div class="label"><span class="ico">🎧</span>STEP 4 — Confirm Appointment</div>
+          <p>"Let me confirm your appointment. Patient Name: [Name] | Doctor: [Doctor] | Department: [Department] | Day &amp; Date: [Day, Date] | Time: [Time Slot]. Is that all correct? Your appointment is confirmed. Please arrive 10 minutes before your scheduled time and bring any previous prescriptions or reports. Our address: L-2/50, Opposite Kangra Niketan, New Mahavir Nagar, Tilak Nagar, New Delhi. Thank you, [Name]. Have a good day."</p></div>
+
+        <div class="note">NEVER book an appointment without reading back ALL details to the caller and receiving confirmation. Errors cost the patient and the hospital both.</div>
+
+        <h2 class="sub-title">When Requested Slot Is Not Available</h2>
+        <div class="card"><div class="label"><span class="ico">🎧</span>OFFER ALTERNATIVE</div>
+          <p>"I'm sorry, [Doctor] is not available on [requested day]. However, the next available slot is on [alternate day] at [time]. Would that work for you? Or, would you prefer I check another doctor in the same department?"</p></div>
+
+        <h2 class="sub-title">Outbound Appointment Reminder Call — SOP</h2>
+        <p class="body-text">Make reminder calls one day before the appointment — between 10 AM and 6 PM.</p>
+        <div class="card"><div class="label"><span class="ico">🎧</span>REMINDER CALL SCRIPT</div>
+          <p>"Hello, may I please speak with [Patient Name]? Good [morning / afternoon]. This is [Name] calling from Aastha Hospital &amp; IVF Centre. I am calling to remind you of your appointment tomorrow with [Doctor Name] at [Time]. Will you be able to come? [If yes] Great. Please carry any previous reports and arrive 10 minutes early. Our address: L-2/50, Opposite Kangra Niketan, Tilak Nagar. [If no / reschedule] No problem. When would you like to reschedule? I will book it right now. Thank you and have a good day."</p></div>
+      </section>
+
+      <!-- ================= SECTION 5 ================= -->
+      <section class="kb-section" id="s8">
+        <h1 class="sec-title">8. Facility &amp; Service Queries</h1>
+
+        <h2 class="sub-title">A. Doctor Timing Queries</h2>
+        <div class="card"><div class="label"><span class="ico">🎧</span>"When is the gynae doctor available?"</div>
+          <p>"We have two gynaecology specialists. Dr. Geeta Jain: Mon–Sat 6 PM–8 PM, Sun 12–1 PM (appt). Dr. Aastha Bajaj: Mon–Sat 10 AM–3 PM, Sun 11 AM–12 PM (appt). Would you like me to book an appointment with either doctor?"</p></div>
+        <div class="card"><div class="label"><span class="ico">🎧</span>"Paediatric doctor kab milenge?"</div>
+          <p>"Paediatrics ke liye 4 doctors hain — Dr. Aditi Sachdeva (Mon–Sat 9:30 AM–5:30 PM), Dr. Sanjay K. Jain (Mon/Wed/Thu/Fri/Sat 12–1 PM &amp; 7–8:30 PM), Dr. Garima Gautam (Mon–Sat 6–8 PM), Dr. Ravinder Yadav (Sun &amp; holidays 10 AM–2 PM). Kya main appointment book kar doon?"</p></div>
+        <div class="card"><div class="label"><span class="ico">🎧</span>"Ortho / bone doctor timing?"</div>
+          <p>"Dr. Deepak Kumar — Mon/Wed/Fri 12–3 PM. Dr. Himanshu Popli — Tue/Thu/Sat 6–8 PM. Joint replacement surgery bhi available hai. Kya appointment book karein?"</p></div>
+
+        <h2 class="sub-title">B. Facility &amp; Service Queries</h2>
+        <div class="grid-2">
+          <div class="card"><div class="label"><span class="ico">🎧</span>"Delivery facility?"</div>
+            <p>Full maternity ward with labour room and OT. Normal delivery, C-section, high-risk pregnancy supported. Consult Dr. Geeta Jain / Dr. Aastha Bajaj.</p></div>
+          <div class="card"><div class="label"><span class="ico">🎧</span>"NICU available?"</div>
+            <p>Yes — NICU for newborns, PICU for paediatric cases, ICU for adult critical care.</p></div>
+          <div class="card"><div class="label"><span class="ico">🎧</span>"Do you do IVF?"</div>
+            <p>Infertility consultation &amp; IUI counselling only at Aastha. Full IVF (egg pick-up, embryo transfer) is at Maccure Hospital, Dwarka — we coordinate the referral.</p></div>
+          <div class="card"><div class="label"><span class="ico">🎧</span>"ICU available?"</div>
+            <p>Yes — ICU (adults), PICU (children), NICU (newborns). Emergency admissions: come directly or call.</p></div>
+          <div class="card"><div class="label"><span class="ico">🎧</span>"Room types?"</div>
+            <p>General Ward, Semi-Private, Private, Deluxe, Suite. Critical care: NICU / PICU / ICU. Connect to billing for exact rates.</p></div>
+          <div class="card"><div class="label"><span class="ico">🎧</span>"Joint / knee replacement?"</div>
+            <p>Yes. Dr. Deepak Kumar (Mon/Wed/Fri 12–3 PM), Dr. Himanshu Popli (Tue/Thu/Sat 6–8 PM).</p></div>
+        </div>
+        <div class="card"><div class="label"><span class="ico">🎧</span>"Lab / ultrasound timing?"</div>
+          <p>Laboratory available all day for routine and emergency testing. Ultrasound &amp; radiology: Mon–Sat, 8–9 AM and 6:30–7:30 PM. Includes routine ultrasound, Level 2 anomaly scan, Colour Doppler, Echo, HSG, X-ray.</p></div>
+
+        <h2 class="sub-title">C. Pricing Queries</h2>
+        <div class="card"><div class="label"><span class="ico">🎧</span>"Delivery ka kharcha kitna hoga?"</div>
+          <p>Charges depend on delivery type and room category. Connect to billing team for a package quote.</p></div>
+        <div class="card"><div class="label"><span class="ico">🎧</span>"OPD / consultation fee kitni hai?"</div>
+          <p>Fees vary by doctor and department. Connect to billing desk for exact current rates.</p></div>
+        <div class="note">NEVER quote specific package or consultation rates on the phone without confirmation from billing. Direct all pricing queries to the billing desk or in-person visit.</div>
+      </section>
+
+      <!-- ================= SECTION 6 ================= -->
+      <section class="kb-section" id="s9">
+        <h1 class="sec-title">9. Panel &amp; Insurance Query Handling</h1>
+        <p class="body-text"><em>Updated list as at 06 June 2026. Always direct caller to TPA desk for eligibility confirmation before admission.</em></p>
+
+        <h2 class="sub-title">Cashless Government Panels — 19 Schemes</h2>
+        <div class="table-wrap"><table class="kb-table">
+          <tr><th>Panel</th><th>Beneficiaries</th><th>Standard Response</th></tr>
+          <tr><td>PM-JAY / Ayushman Bharat</td><td>BPL families</td><td>Yes, subject to eligibility verification. TPA team will confirm.</td></tr>
+          <tr><td>CGHS Pensioner</td><td>Central Govt pensioners — Yellow Card</td><td>Yes, accepted. Carry your CGHS card.</td></tr>
+          <tr><td>CAPF</td><td>BSF, CISF, CRPF, ITBP, NSG, SSB, Assam Rifles</td><td>Yes, accepted. Bring your ID document.</td></tr>
+          <tr><td>ECHS</td><td>Ex-servicemen and dependants</td><td>Yes, accepted. Bring your ECHS card.</td></tr>
+          <tr><td>DGEHS</td><td>Delhi Govt employees / pensioners</td><td>Yes, accepted.</td></tr>
+          <tr><td>DGHS Pensioner</td><td>DGHS pensioners</td><td>Yes, accepted.</td></tr>
+          <tr><td>ESIC / ESI</td><td>Organised sector workers</td><td>Yes, accepted.</td></tr>
+          <tr><td>MCD Pensioner</td><td>MCD pensioners</td><td>Yes, accepted.</td></tr>
+          <tr><td>DUSIB Pensioner</td><td>DUSIB pensioners</td><td>Yes, accepted. Carry pensioner card.</td></tr>
+          <tr><td>DTL</td><td>Delhi Transco Ltd. employees</td><td>Yes, accepted.</td></tr>
+          <tr><td>Delhi University (DU)</td><td>Faculty and staff</td><td>Yes, accepted.</td></tr>
+          <tr><td>IPGCL / PPCL</td><td>Delhi power sector employees</td><td>Yes, accepted.</td></tr>
+          <tr><td>DVB / DESU Pensioner</td><td>Delhi Vidyut Board pensioners</td><td>Yes, accepted. Carry pensioner card.</td></tr>
+          <tr><td>BSES</td><td>BSES Rajdhani / Yamuna Power employees</td><td>Yes, accepted.</td></tr>
+          <tr><td>BIS</td><td>Bureau of Indian Standards employees</td><td>Yes, accepted.</td></tr>
+          <tr><td>NCRPB</td><td>NCR Planning Board employees</td><td>Yes, accepted.</td></tr>
+          <tr><td>UIDAI / Aadhar</td><td>UIDAI employees — CGHS rates</td><td>Yes, accepted at CGHS rates.</td></tr>
+          <tr><td>PCI</td><td>Press Council of India — credit basis</td><td>Yes, accepted on credit basis.</td></tr>
+          <tr><td>Delhi Police</td><td>Delhi Police personnel</td><td>Yes, accepted.</td></tr>
+        </table></div>
+
+        <h2 class="sub-title">Reimbursement Government Panels — 27 Schemes</h2>
+        <div class="table-wrap"><table class="kb-table">
+          <tr><th>Panel</th><th>Beneficiaries</th><th>Standard Response</th></tr>
+          <tr><td>CGHS Working</td><td>Central Govt working employees — Blue Card</td><td>Yes, reimbursement. Carry CGHS card.</td></tr>
+          <tr><td>DGHS Working</td><td>DGHS working employees</td><td>Yes, reimbursement.</td></tr>
+          <tr><td>Air India Retired (AIA)</td><td>Retired Air India employees</td><td>Yes, reimbursement.</td></tr>
+          <tr><td>CERC / CREC</td><td>Central Electricity Regulatory Commission</td><td>Yes, accepted.</td></tr>
+          <tr><td>NITRD / NITRO</td><td>TB &amp; Respiratory Diseases institute</td><td>Yes, accepted.</td></tr>
+          <tr><td>BMTPC</td><td>Building Materials &amp; Tech Promotion Council</td><td>Yes, accepted.</td></tr>
+          <tr><td>SAI</td><td>Sports Authority of India</td><td>Yes, accepted.</td></tr>
+          <tr><td>JERC</td><td>Joint Electricity Regulatory Commission</td><td>Yes, accepted.</td></tr>
+          <tr><td>CUH</td><td>Central University of Haryana</td><td>Yes, accepted.</td></tr>
+          <tr><td>DERC</td><td>Delhi Electricity Regulatory Commission</td><td>Yes, accepted.</td></tr>
+          <tr><td>HITES</td><td>HLL Infra Tech Services Ltd.</td><td>Yes, accepted.</td></tr>
+          <tr><td>CCRT</td><td>Centre for Culture, Resource &amp; Training</td><td>Yes, accepted.</td></tr>
+          <tr><td>TPDDL</td><td>Tata Power Delhi Distribution Ltd.</td><td>Yes, reimbursement.</td></tr>
+          <tr><td>ICAR</td><td>Indian Council of Agricultural Research</td><td>Yes, accepted.</td></tr>
+          <tr><td>DMRC</td><td>Delhi Metro Rail Corporation</td><td>Yes, reimbursement.</td></tr>
+          <tr><td>MCD Working</td><td>MCD working employees</td><td>Yes, reimbursement.</td></tr>
+          <tr><td>DDA</td><td>Delhi Development Authority</td><td>Yes, reimbursement.</td></tr>
+          <tr><td>DUSIB Working</td><td>DUSIB working employees</td><td>Yes, reimbursement.</td></tr>
+          <tr><td>NIEPA</td><td>Nat'l Inst. Educational Planning &amp; Admin.</td><td>Yes, accepted.</td></tr>
+          <tr><td>DJB</td><td>Delhi Jal Board</td><td>Yes, reimbursement.</td></tr>
+          <tr><td>ICPR</td><td>Indian Council of Philosophical Research</td><td>Yes, accepted.</td></tr>
+          <tr><td>National Horticulture</td><td>Nat'l Horticulture Board — CGHS rates</td><td>Yes, at CGHS rates.</td></tr>
+          <tr><td>ICSSR</td><td>Indian Council of Social Science Research</td><td>Yes, accepted.</td></tr>
+          <tr><td>CBSE</td><td>Central Board of Secondary Education</td><td>Yes, reimbursement.</td></tr>
+          <tr><td>DAK</td><td>As per panel terms</td><td>Yes — confirm with TPA desk.</td></tr>
+          <tr><td>DIEPA</td><td>As per panel terms</td><td>Yes — confirm with TPA desk.</td></tr>
+          <tr><td>DTC</td><td>Delhi Transport Corporation</td><td>Yes — confirm with TPA desk.</td></tr>
+        </table></div>
+
+        <div class="card"><div class="label"><span class="ico">🎧</span>"Kaunse panels hain?" / "Is your hospital on CGHS?"</div>
+          <p>"Aastha Hospital mein almost all major government panels available hain — Cashless mein: CGHS Pensioner, CAPF, ECHS, DGEHS, ESIC, MCD Pensioner, DUSIB Pensioner, DTL, Delhi University, IPGCL/PPCL, DVB Pensioner, BSES, BIS, NCRPB, UIDAI, PCI, Delhi Police aur PM-JAY. Reimbursement mein: CGHS Working, DMRC, DDA, TPDDL, DJB, BMTPC, SAI, DERC, CBSE aur 19 aur schemes. Private insurance — Star Health, National Insurance, HDFC ERGO, SBI General, Bajaj Allianz, ICICI Lombard aur 30 se zyada TPAs — bhi accept hote hain. Aapke paas kaunsa panel / insurance hai? Main TPA desk se confirm karwata hoon."</p></div>
+
+        <h2 class="sub-title">Private Insurance &amp; TPA — Quick Reference</h2>
+        <div class="table-wrap"><table class="kb-table">
+          <tr><th>Insurer / TPA</th><th>Mode</th></tr>
+          <tr><td>National / New India / Oriental / United India Insurance</td><td>Cashless / GIPSA</td></tr>
+          <tr><td>Bajaj Allianz, HDFC ERGO, SBI General, IffcoTokio</td><td>Cashless</td></tr>
+          <tr><td>Cholamandalam, Future Generali, Reliance, Tata AIG</td><td>Cashless</td></tr>
+          <tr><td>Navi, Liberty, Magma HDI, Manipal Cigna</td><td>Cashless</td></tr>
+          <tr><td>Star Health &amp; Allied Insurance</td><td>Cashless</td></tr>
+          <tr><td>Care Health (Corporate Only), Universal Sompo</td><td>Cashless</td></tr>
+          <tr><td>Medi Assist, MDIndia, Paramount, Heritage</td><td>Cashless</td></tr>
+          <tr><td>Family Health Plan, Raksha, Vidal, Volo</td><td>Cashless</td></tr>
+          <tr><td>Medsave, Genins, Health India, Good Health</td><td>Cashless</td></tr>
+          <tr><td>Park Mediclaim, Safeway/Health Assist, Ericson</td><td>Cashless</td></tr>
+          <tr><td>Health TPA of India, Vision Digital, Link-K, AKKO</td><td>Cashless</td></tr>
+          <tr><td>ICICI Lombard</td><td>Reimbursement</td></tr>
+          <tr><td>Niva Bupa Health Insurance</td><td>Reimbursement</td></tr>
+          <tr><td>Go Digit General Insurance Ltd.</td><td>Reimbursement</td></tr>
+        </table></div>
+
+        <div class="card"><div class="label"><span class="ico">🎧</span>"Is cashless treatment available?"</div>
+          <p>"Cashless treatment depends on your policy terms, panel eligibility and approval from the insurance company or panel authority. Our TPA desk will verify your eligibility at the time of visit. Shall I connect you now?"</p></div>
+        <div class="note">NEVER guarantee cashless approval. Standard phrase always: "Cashless is subject to your eligibility and approval from the panel / insurance company. Our TPA team will guide you."</div>
+      </section>
+
+      <!-- ================= SECTION 7 ================= -->
+      <section class="kb-section" id="s10">
+        <h1 class="sec-title">10. Emergency Call Protocol</h1>
+        <div class="note">PRIORITY: Emergency calls override everything. Respond immediately.</div>
+
+        <h2 class="sub-title">Step 1 — Recognise Emergency</h2>
+        <ul class="kb-list">
+          <li>Caller mentions: severe pain, bleeding, labour pain, loss of consciousness, difficulty breathing, convulsions, child not responding, accident</li>
+          <li>Caller is distressed, speaking fast, or a family member is panicking</li>
+          <li>Any caller mentioning "emergency" or "urgent"</li>
+        </ul>
+
+        <h2 class="sub-title">Step 2 — First Response (within 5 seconds)</h2>
+        <div class="card"><div class="label"><span class="ico">🎧</span>FIRST RESPONSE</div>
+          <p>"Sir / Ma'am, please come to Aastha Hospital immediately. Our team is available. Address: L-2/50, Opposite Kangra Niketan, New Mahavir Nagar, Tilak Nagar, New Delhi – 110018. You can also call this same number when you arrive — our reception will direct you. How far are you from the hospital right now?"</p></div>
+
+        <h2 class="sub-title">Step 3 — Keep Calm, Keep Caller Calm</h2>
+        <ul class="kb-list">
+          <li>Speak slowly and clearly — your calm transfers to the caller</li>
+          <li>Give the address and number first, don't over-question</li>
+          <li>If ambulance needed: "I am alerting our team immediately. Please stay on the line."</li>
+          <li>Escalate to the on-duty supervisor immediately while the caller is still on the line</li>
+        </ul>
+
+        <div class="grid-2">
+          <div class="card"><div class="label"><span class="ico">🎧</span>PREGNANCY EMERGENCY</div>
+            <p>"Ma'am, please come to Aastha Hospital immediately — do not wait. Our gynaecology &amp; labour room team are available. L-2/50, Opposite Kangra Niketan, Tilak Nagar, New Delhi. Is someone with you who can bring you?"</p></div>
+          <div class="card"><div class="label"><span class="ico">🎧</span>CHILD EMERGENCY</div>
+            <p>"Please come to Aastha Hospital immediately. We have NICU, PICU and 24-hour paediatric support. Come straight to the emergency entrance."</p></div>
+        </div>
+        <div class="card"><div class="label"><span class="ico">🎧</span>ADULT MEDICAL EMERGENCY</div>
+          <p>"Please come to Aastha Hospital immediately or send the patient now. L-2/50, Opposite Kangra Niketan, New Mahavir Nagar, Tilak Nagar, New Delhi. Our emergency team is available. Do not delay."</p></div>
+
+        <h2 class="sub-title">Step 4 — Internal Escalation After Emergency Call</h2>
+        <ul class="kb-list">
+          <li>Immediately alert on-duty supervisor</li>
+          <li>Inform the relevant clinical department if time permits</li>
+          <li>Document the call: caller name, patient condition, time, action taken</li>
+        </ul>
+        <div class="note">DO NOT put an emergency caller on hold. DO NOT transfer without staying on the line. If you must transfer, stay connected until the receiving person confirms they have the caller.</div>
+      </section>
+
+      <!-- ================= SECTION 8 ================= -->
+      <section class="kb-section" id="s11">
+        <h1 class="sec-title">11. Difficult Call Handling</h1>
+
+        <h2 class="sub-title">A. Angry or Frustrated Caller</h2>
+        <div class="card"><div class="label"><span class="ico">🎧</span>RESPONDING TO AN ANGRY CALLER</div>
+          <p>"I completely understand your concern, [Name], and I sincerely apologise for the inconvenience you have experienced. Let me make sure this is addressed for you right away. Could you give me a moment — I am noting down the details. I am escalating this to the relevant team now. You will receive a callback within [X hours]. Is this number the best one to reach you?"</p></div>
+        <div class="note">KEY PRINCIPLE: Do not argue. Do not defend. Acknowledge — empathise — escalate.</div>
+
+        <h2 class="sub-title">B. Caller Asks for Doctor's Personal Number</h2>
+        <div class="card"><div class="label"><span class="ico">🎧</span>RESPONSE</div>
+          <p>"Our doctors' personal numbers are not shared — all appointments and queries go through the hospital helpline. I can book an appointment with [Doctor] right now, or note an urgent message for [him/her]. Which would you prefer?"</p></div>
+
+        <h2 class="sub-title">C. Caller Threatens Legal Action</h2>
+        <div class="card"><div class="label"><span class="ico">🎧</span>RESPONSE</div>
+          <p>"[Name], I hear you and I take your concern very seriously. I am immediately escalating this to our senior management. You will receive a call from our medical director / hospital manager within [timeframe]. May I have the best contact number?"</p></div>
+        <div class="note">Stop the call here. Do NOT engage in argument. Escalate to Medical Director. Document exact words used.</div>
+
+        <h2 class="sub-title">D. Media / Journalist Calling</h2>
+        <div class="card"><div class="label"><span class="ico">🎧</span>RESPONSE</div>
+          <p>"Thank you for calling Aastha Hospital. For media queries, I will need to transfer you to our administration team. May I take your name and contact number?"</p></div>
+        <div class="note">Do NOT speak to media on behalf of the hospital. Do NOT confirm or deny any event. Escalate immediately.</div>
+
+        <h2 class="sub-title">E. Caller in Distress — Mental Health / Emotional Crisis</h2>
+        <div class="card"><div class="label"><span class="ico">🎧</span>RESPONSE</div>
+          <p>"I am glad you called. I am here with you. Could you tell me what is happening — I want to help you. Aastha Hospital has a psychiatry and counselling team. I would like to book an urgent appointment for you today or tomorrow. Would that be okay?"</p></div>
+        <div class="note">Speak slowly and gently. If caller expresses self-harm intent — stay on the line, connect to supervisor immediately, offer an emergency appointment.</div>
+      </section>
+
+      <!-- ================= SECTION 9 ================= -->
+      <section class="kb-section" id="s12">
+        <h1 class="sec-title">12. Complaint Handling — SOP</h1>
+
+        <h2 class="sub-title">Step 1 — Receive and Acknowledge</h2>
+        <div class="card"><div class="label"><span class="ico">🎧</span>RESPONSE</div>
+          <p>"Thank you for bringing this to our attention, [Name]. I sincerely apologise for your experience. What happened is not the standard we aim for. I am noting down everything you have told me."</p></div>
+
+        <h2 class="sub-title">Step 2 — Record the Complaint</h2>
+        <ul class="kb-list">
+          <li>Caller name and contact number</li>
+          <li>Nature of complaint: billing / doctor conduct / waiting time / service quality / other</li>
+          <li>Date and time of the incident</li>
+          <li>Department and doctor name (if applicable)</li>
+          <li>Caller's expectation / desired resolution</li>
+        </ul>
+
+        <h2 class="sub-title">Step 3 — Escalate Within 5 Minutes</h2>
+        <ul class="kb-list">
+          <li>Log complaint in CRM as "Complaint — Priority High"</li>
+          <li>Alert supervisor immediately by internal messaging / call</li>
+          <li>Supervisor calls back the patient within committed timeframe</li>
+        </ul>
+        <div class="card"><div class="label"><span class="ico">🎧</span>COMPLAINT CLOSING</div>
+          <p>"[Name], I have noted your full concern and our senior team will call you back within [2 hours / same day]. I want to assure you that this will be addressed properly."</p></div>
+
+        <div class="table-wrap"><table class="kb-table">
+          <tr><th>Complaint Category</th><th>Escalate To</th><th>Timeline</th></tr>
+          <tr><td>Billing dispute</td><td>Billing Manager</td><td>Same day call-back</td></tr>
+          <tr><td>Doctor conduct</td><td>Medical Director</td><td>Within 2 hours</td></tr>
+          <tr><td>Waiting time / service</td><td>Operations Manager</td><td>Within 4 hours</td></tr>
+          <tr><td>NICU / ICU / Critical care concern</td><td>Medical Director</td><td>Immediately</td></tr>
+          <tr><td>Legal threat or media</td><td>Medical Director / Legal team</td><td>Immediately — within 15 minutes</td></tr>
+          <tr><td>General service feedback</td><td>Operations Manager</td><td>Next business day</td></tr>
+        </table></div>
+      </section>
+
+      <!-- ================= SECTION 10 ================= -->
+      <section class="kb-section" id="s13">
+        <h1 class="sec-title">13. Outbound Call Protocols</h1>
+
+        <h2 class="sub-title">A. Appointment Reminder Calls</h2>
+        <p class="body-text">Call the day before the appointment. Do not call before 10 AM or after 7 PM.</p>
+        <div class="card"><div class="label"><span class="ico">🎧</span>REMINDER CALL SCRIPT</div>
+          <p>"Hello, may I please speak with [Patient Name]? Good [morning / afternoon]. This is [Name] calling from Aastha Hospital. I am calling to remind you of your appointment tomorrow with [Doctor] at [Time]. Will you be able to make it? [Yes] Great — please arrive 10 minutes early. [No / Reschedule] No problem — when would be a good time? I can rebook right now. Thank you. Take care."</p></div>
+
+        <h2 class="sub-title">B. Missed Call Callbacks</h2>
+        <p class="body-text">Return all missed calls within 30 minutes during operating hours.</p>
+        <div class="card"><div class="label"><span class="ico">🎧</span>MISSED CALL CALLBACK</div>
+          <p>"Hello, may I please speak with [Name]? Good [morning / afternoon]. This is [Name] from Aastha Hospital &amp; IVF Centre. We noticed a missed call from this number — I am calling to check if you need any assistance. How may I help you?"</p></div>
+
+        <h2 class="sub-title">C. Post-Discharge Feedback Calls</h2>
+        <p class="body-text">Call patients 2–3 days after discharge. 10 AM – 5 PM only.</p>
+        <div class="card"><div class="label"><span class="ico">🎧</span>FEEDBACK CALL SCRIPT</div>
+          <p>"Hello, may I please speak with [Patient Name] or their family? [Patient Name] was recently with us, and we are calling to check on their wellbeing and collect brief feedback. How is [Patient] feeling now? On a scale of 1 to 5, how would you rate your overall experience at Aastha Hospital? Any specific feedback or suggestion? Thank you so much, [Name]. Your feedback helps us improve."</p></div>
+      </section>
+
+      <!-- ================= SECTION 11 ================= -->
+      <section class="kb-section" id="s14">
+        <h1 class="sec-title">14. Call Disposition Codes</h1>
+        <p class="body-text">Tag every call in the CRM using these codes. No untagged calls.</p>
+        <div class="table-wrap"><table class="kb-table">
+          <tr><th>Code</th><th>Disposition</th><th>When to Use</th></tr>
+          <tr><td>APPT-NEW</td><td>New Appointment Booked</td><td>Caller booked an appointment — first visit</td></tr>
+          <tr><td>APPT-REBOOK</td><td>Appointment Rescheduled</td><td>Existing appointment moved to new slot</td></tr>
+          <tr><td>APPT-CANCEL</td><td>Appointment Cancelled</td><td>Caller cancelled their appointment</td></tr>
+          <tr><td>INFO-DOC</td><td>Doctor Timing Query</td><td>Caller asked about doctor availability only</td></tr>
+          <tr><td>INFO-SVC</td><td>Service / Facility Query</td><td>Caller asked about a service, room, or facility</td></tr>
+          <tr><td>INFO-PANEL</td><td>Panel / Insurance Query</td><td>Caller asked about CGHS, TPA, cashless</td></tr>
+          <tr><td>INFO-LOCATION</td><td>Location / Direction Query</td><td>Caller asked for address or directions</td></tr>
+          <tr><td>INFO-RATE</td><td>Rate / Package Query</td><td>Caller asked about fees — directed to billing</td></tr>
+          <tr><td>EMERGENCY</td><td>Emergency Call</td><td>Caller reported an emergency situation</td></tr>
+          <tr><td>COMPLAINT</td><td>Complaint Logged</td><td>Caller expressed dissatisfaction — escalated</td></tr>
+          <tr><td>MISSED-CB</td><td>Missed Call Callback</td><td>Call was a return call to a missed call</td></tr>
+          <tr><td>FEEDBACK</td><td>Post-Discharge Feedback</td><td>Outbound feedback call completed</td></tr>
+          <tr><td>NO-ANSWER</td><td>No Answer</td><td>Outbound call — patient did not answer</td></tr>
+          <tr><td>VOICEMAIL</td><td>Voicemail Left</td><td>Left voicemail message on outbound call</td></tr>
+          <tr><td>WRONG-NUM</td><td>Wrong Number</td><td>Caller reached in error — not for hospital</td></tr>
+          <tr><td>BLANK-CALL</td><td>Blank / No Response</td><td>Call connected but no response from caller</td></tr>
+        </table></div>
+      </section>
+
+      <!-- ================= SECTION 12 ================= -->
+      <section class="kb-section" id="s15">
+        <h1 class="sec-title">15. Escalation Matrix</h1>
+        <div class="table-wrap"><table class="kb-table">
+          <tr><th>Situation</th><th>Escalate To</th><th>Timeline</th></tr>
+          <tr><td>Active emergency call received</td><td>On-duty Supervisor + Clinical team</td><td>Immediately — during the call</td></tr>
+          <tr><td>Complaint about doctor conduct</td><td>Medical Director</td><td>Within 2 hours</td></tr>
+          <tr><td>Billing complaint</td><td>Billing Manager</td><td>Same day</td></tr>
+          <tr><td>Caller threatening legal action</td><td>Medical Director + Admin</td><td>Within 15 minutes</td></tr>
+          <tr><td>Media / journalist call</td><td>Medical Director / Admin</td><td>Immediately — do not respond</td></tr>
+          <tr><td>VIP patient / high-profile booking</td><td>Senior Manager</td><td>Immediately</td></tr>
+          <tr><td>NICU / ICU / maternity emergency query</td><td>On-duty Clinical Head</td><td>Immediately</td></tr>
+          <tr><td>Repeat complaint (second call)</td><td>Operations Manager + Medical Director</td><td>Within 30 minutes</td></tr>
+          <tr><td>Caller in mental health crisis</td><td>Supervisor + connect to psychiatry team</td><td>During the call</td></tr>
+        </table></div>
+        <div class="note">If you are unsure whether to escalate — escalate. It is always better to involve a supervisor than to handle a sensitive situation alone.</div>
+      </section>
+
+      <!-- ================= SECTION 13 ================= -->
+      <section class="kb-section" id="s16">
+        <h1 class="sec-title">16. Dos and Don'ts — Call Conduct</h1>
+        <div class="grid-2">
+          <div>
+            <h2 class="sub-title">DO</h2>
+            <ul class="kb-list">
+              <li>Answer within 3 rings — every time, no exceptions</li>
+              <li>Greet warmly using the standard greeting script</li>
+              <li>Ask for the caller's name early and use it</li>
+              <li>Listen completely before responding</li>
+              <li>Read back all appointment details for confirmation</li>
+              <li>Speak at a comfortable pace — not too fast</li>
+              <li>Stay calm and composed even with angry callers</li>
+              <li>Escalate immediately when required</li>
+              <li>Log every call in the CRM before moving to the next call</li>
+              <li>Thank the caller at the end of every call</li>
+            </ul>
+          </div>
+          <div>
+            <h2 class="sub-title">DO NOT</h2>
+            <ul class="kb-list">
+              <li>Put an emergency caller on hold — ever</li>
+              <li>Make clinical judgements ("aapko ye bimari hai")</li>
+              <li>Quote specific rates without authorisation from billing</li>
+              <li>Share any doctor's personal mobile number</li>
+              <li>Argue with a caller — even if they are wrong</li>
+              <li>Guarantee cashless or panel approval</li>
+              <li>Say "We do IVF at Aastha" — IVF is at Maccure Dwarka only</li>
+              <li>Disconnect an unhappy caller without escalating</li>
+              <li>Leave a call unlogged in CRM</li>
+              <li>Speak negatively about any other hospital or doctor</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= SECTION 14 ================= -->
+      <section class="kb-section" id="s17">
+        <h1 class="sec-title">17. Quick Reference — Timings &amp; Contacts</h1>
+        <div class="table-wrap"><table class="kb-table">
+          <tr><th>Department / Doctor</th><th>Timing</th><th>Days</th></tr>
+          <tr><td>Dr. Geeta Jain — Gynae / IVF</td><td>6 PM – 8 PM</td><td>Mon–Sat | Sun 12–1 PM (appt)</td></tr>
+          <tr><td>Dr. Aastha Bajaj — Gynae / OBS</td><td>10 AM – 3 PM</td><td>Mon–Sat | Sun 11–12 PM (appt)</td></tr>
+          <tr><td>Dr. Sanjay K. Jain — Paediatrics</td><td>12–1 PM &amp; 7–8:30 PM</td><td>Mon/Wed/Thu/Fri/Sat | Sun 12–1 PM</td></tr>
+          <tr><td>Dr. Aditi Sachdeva — Paediatrics</td><td>9:30 AM – 5:30 PM</td><td>Mon–Sat</td></tr>
+          <tr><td>Dr. Garima Gautam — Paediatrics</td><td>6 PM – 8 PM</td><td>Mon–Sat</td></tr>
+          <tr><td>Dr. Ravinder Yadav — Paediatrics</td><td>10 AM – 2 PM</td><td>Sunday &amp; Holidays</td></tr>
+          <tr><td>Dr. Prateek — Medicine</td><td>11 AM–1 PM &amp; 6–8 PM</td><td>Mon–Sat | Sun 10–12 PM</td></tr>
+          <tr><td>Dr. Gurminder Singh Arora — Derma</td><td>10 AM – 2 PM</td><td>Mon–Sat</td></tr>
+          <tr><td>Dr. Deepak Kumar — Ortho</td><td>12 PM – 3 PM</td><td>Mon / Wed / Fri</td></tr>
+          <tr><td>Dr. Himanshu Popli — Ortho</td><td>6 PM – 8 PM</td><td>Tue / Thu / Sat</td></tr>
+          <tr><td>Dr. Shailendra Kumar Jain — Surgery</td><td>11 AM – 12 PM (appt)</td><td>Tue / Thu / Sat</td></tr>
+          <tr><td>Dr. Anshul Bansal — Surgery</td><td>12 PM – 2 PM</td><td>Mon/Wed/Fri | Sun 10–11 AM (appt)</td></tr>
+          <tr><td>Dr. Ranjan — Medical Oncology</td><td>By appointment only</td><td>—</td></tr>
+          <tr><td>Dr. Sudip Raina — Surgical Oncology</td><td>10 AM – 12 PM</td><td>2nd &amp; 4th Sunday</td></tr>
+          <tr><td>Dr. Chaitanya Sheoran — Psychiatry</td><td>1 PM – 3 PM</td><td>Tue–Sat</td></tr>
+          <tr><td>Ms. Gavneet Kaur Pruthi — Psychology</td><td>1 PM – 4 PM</td><td>Tue–Sat</td></tr>
+          <tr><td>Dr. Mayank Lau — Dental</td><td>10 AM – 2 PM</td><td>Mon–Sat</td></tr>
+          <tr><td>Ultrasound &amp; Radiology</td><td>8–9 AM &amp; 6:30–7:30 PM</td><td>Mon–Sat</td></tr>
+        </table></div>
+
+        <div class="table-wrap"><table class="kb-table">
+          <tr><th>Key Number</th><th>Details</th></tr>
+          <tr><td>Main Helpline / Appointment</td><td>+91-9250913363</td></tr>
+          <tr><td>WhatsApp Chatbot</td><td>7303280777 — patient sends "Hi"</td></tr>
+          <tr><td>Hospital Address</td><td>L-2/50, Opp. Kangra Niketan, New Mahavir Nagar, Tilak Nagar, New Delhi – 110018</td></tr>
+        </table></div>
+      </section>
+
+      <!-- ================= SECTION 15 ================= -->
+      <section class="kb-section" id="s18">
+        <h1 class="sec-title">18. Final Notes for Call Centre Team</h1>
+        <p class="body-text">Every call is someone's moment of need. They are not calling out of curiosity — they are worried about their health or their family's health. Your voice, your words and your speed make a real difference to them. Treat every call as if your own family member is on the other end.</p>
+        <ul class="kb-list">
+          <li>When in doubt — escalate. Always.</li>
+          <li>When a patient is distressed — slow down your speech, not your urgency.</li>
+          <li>When a call is difficult — the answer is empathy first, solution second.</li>
+          <li>Your goal is not to end the call. It is to give the caller a clear next step before you end the call.</li>
+        </ul>
+        <div class="note" style="text-align:center;">AASTHA HOSPITAL &amp; IVF CENTRE — Call Centre Team</div>
+      </section>
+
+      <div class="no-results" id="noResults">No matching topics found. Try a different search term.</div>
+
+    </div>
+  </main>
+</div>
+
+<a href="#overview" class="back-top" id="backTop" title="Back to top">↑</a>
+
+<script>
+  // ---- Scrollspy ----
+  const navLinks = Array.from(document.querySelectorAll('#toc a'));
+  const sections = navLinks.map(a => document.getElementById(a.dataset.target)).filter(Boolean);
+  const overview = document.getElementById('overview');
+  const backTop = document.getElementById('backTop');
+  const searchInput = document.getElementById('search');
+  const searchCount = document.getElementById('searchCount');
+  const noResults = document.getElementById('noResults');
+  const kbSections = Array.from(document.querySelectorAll('section.kb-section'));
+
+  navLinks.forEach(a => {
+    a.addEventListener('click', (e) => {
+      e.preventDefault();
+      const target = document.getElementById(a.dataset.target);
+      if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+  });
+
+  function setActive() {
+    let current = sections[0];
+    const scrollPos = window.scrollY + 90;
+    for (const sec of sections) {
+      if (sec.offsetTop <= scrollPos) current = sec;
+    }
+    navLinks.forEach(a => a.classList.toggle('active', a.dataset.target === current.id));
+  }
+  function updateScrollState() {
+    setActive();
+    backTop.classList.toggle('show', window.scrollY > 400);
+  }
+
+  window.addEventListener('scroll', updateScrollState);
+  updateScrollState();
+
+  // ---- Search / filter ----
+  overview.classList.remove('hidden');
+
+  function clearHighlights(el){
+    el.querySelectorAll('mark').forEach(m => {
+      const parent = m.parentNode;
+      parent.replaceChild(document.createTextNode(m.textContent), m);
+      parent.normalize();
+    });
+  }
+
+  function highlight(el, term){
+    if(!term) return;
+    const walker = document.createTreeWalker(el, NodeFilter.SHOW_TEXT, null);
+    const nodes = [];
+    while (walker.nextNode()) nodes.push(walker.currentNode);
+    nodes.forEach(node => {
+      const text = node.nodeValue;
+      const idx = text.toLowerCase().indexOf(term);
+      if (idx > -1) {
+        const before = text.slice(0, idx);
+        const match = text.slice(idx, idx + term.length);
+        const after = text.slice(idx + term.length);
+        const frag = document.createDocumentFragment();
+        frag.appendChild(document.createTextNode(before));
+        const markEl = document.createElement('mark');
+        markEl.textContent = match;
+        frag.appendChild(markEl);
+        frag.appendChild(document.createTextNode(after));
+        node.parentNode.replaceChild(frag, node);
+      }
+    });
+  }
+
+  function runSearch() {
+    const term = searchInput.value.trim().toLowerCase();
+
+    // reset
+    kbSections.forEach(s => { s.classList.remove('hidden'); clearHighlights(s); });
+    overview.classList.remove('hidden');
+
+    if (!term) {
+      searchCount.textContent = '';
+      noResults.style.display = 'none';
+      return;
+    }
+
+    let totalMatches = 0;
+    kbSections.forEach(sec => {
+      const text = sec.textContent.toLowerCase();
+      const match = text.includes(term);
+      sec.classList.toggle('hidden', !match);
+      if (match) {
+        totalMatches++;
+        highlight(sec, term);
+      }
+    });
+
+    overview.classList.add('hidden');
+    searchCount.textContent = totalMatches + ' section' + (totalMatches === 1 ? '' : 's') + ' match';
+    noResults.style.display = totalMatches === 0 ? 'block' : 'none';
+  }
+
+  searchInput.addEventListener('input', runSearch);
+</script>
+
+</body>
+<script>
+const token = localStorage.getItem("token");
+
+if (!token) {
+    window.location.replace("login.html");
+}
+
+async function loadUser() {
+
+    try {
+
+        const response = await fetch(
+            "http://localhost:5000/api/auth/me",
+            {
+                method: "GET",
+                cache: "no-store",
+                headers: {
+                    "Authorization": `Bearer ${token}`,
+                    "Cache-Control": "no-cache"
+                }
+            }
+        );
+
+        if (!response.ok) {
+
+            localStorage.clear();
+
+            window.location.replace("login.html");
+
+            return;
+        }
+
+        const data = await response.json();
+
+        console.log("Current User:", data);
+
+        document.getElementById("userName").textContent =
+            `Welcome, ${data.user.fullName}`;
+
+    } catch (error) {
+
+        console.error(error);
+
+        localStorage.clear();
+
+        window.location.replace("login.html");
+
+    }
+
+}
+
+loadUser();
+
+document.getElementById("logoutBtn").addEventListener("click", () => {
+
+    if (!confirm("Are you sure you want to logout?"))
+        return;
+
+    localStorage.clear();
+
+    window.location.replace("login.html");
+
+});
+</script>
+</html>
